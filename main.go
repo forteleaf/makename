@@ -1,8 +1,6 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
 const (
 	StrStroke = 1
@@ -12,11 +10,24 @@ const (
 // 3개의 각각의 합을 구하기
 func sum(a, b, c int) {
 	// arr := []int{}
-	result1 := a + 1
-	result2 := a + b
-	result3 := b + c
-	result4 := c + 1
-	result5 := a + b + c
+	result1 := a + 1     // 천격
+	result2 := a + b     // 인격
+	result3 := b + c     // 지격
+	result4 := c + 1     // 외격
+	result5 := a + b + c // 총격
+
+	if result5 > 81 {
+		result5 = result5 - 80
+	}
+	func() {
+		fmt.Println("[", a, b, c, "]")
+		fmt.Println("천격", result1)
+		fmt.Println("인격", result2)
+		fmt.Println("지격", result3)
+		fmt.Println("외격", result4)
+		fmt.Println("총격", result5)
+	}()
+
 	if BadorGood(result1) {
 		// fmt.Println("천격통과")
 		if BadorGood(result5) {
@@ -28,7 +39,6 @@ func sum(a, b, c int) {
 					fmt.Println("외격통과")
 					if BadorGood(result2) {
 						fmt.Println("중격통과")
-						fmt.Println("[", a, b, c, "]")
 					}
 				}
 			}
@@ -38,6 +48,7 @@ func sum(a, b, c int) {
 }
 
 func BadorGood(num int) bool {
+
 	// goodArr := []int{}
 	var numPerfect = []int{13, 16, 21, 23, 31, 41}
 	// var numVerygood = []int{1, 3, 5, 6, 11, 15, 18, 24, 32, 35, 37, 39}
@@ -56,9 +67,17 @@ func BadorGood(num int) bool {
 }
 
 // 첫획을 넣으면 나머지 좋은 획수 구하기
+func InputNum() {
+	var n1, n2, n3 int
+	fmt.Print("Enter number:")
+	fmt.Scanf("%d", &n1)
+	fmt.Scanf("%d", &n2)
+	fmt.Scanf("%d", &n3)
+	sum(n1, n2, n3)
+}
 func main() {
 	var wordA = 12 // 황
-
+	// reader := bufio.NewReader(os.Stdin)
 	for i := StrStroke; i <= EndStroke; i++ {
 		for j := StrStroke; j <= EndStroke; j++ {
 			sum(wordA, i, j)
