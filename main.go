@@ -10,41 +10,57 @@ const (
 // 3개의 각각의 합을 구하기
 func sum(a, b, c int) {
 	// arr := []int{}
-	result1 := a + 1     // 천격
-	result2 := a + b     // 인격
-	result3 := b + c     // 지격
-	result4 := c + 1     // 외격
-	result5 := a + b + c // 총격
+	// result1 := a + 1     // 천격
+	result2 := a + b // 인격, 형격
+	result3 := b + c // 지격, 원격
+	// result4 := c + 1     // 외격
+	result5 := a + b + c // 총격, 정격
+	result6 := a + c     // 이격
 
 	if result5 > 81 {
 		result5 = result5 - 80
 	}
-	// func() {
-	// 	fmt.Println("[", a, b, c, "]")
-	// 	fmt.Println("천격", result1)
-	// 	fmt.Println("인격", result2)
-	// 	fmt.Println("지격", result3)
-	// 	fmt.Println("외격", result4)
-	// 	fmt.Println("총격", result5)
-	// }()
 
-	if BadorGood(result1) {
-		// fmt.Println("천격통과")
-		if BadorGood(result5) {
-			// fmt.Println("총격통과")
+	// if BadorGood(result1) {
+	// 	// fmt.Println("천격통과")
+	// 	if BadorGood(result5) {
+	// 		// fmt.Println("총격통과")
+	// 		if BadorGood(result3) {
+	// 			// fmt.Println("지격통과")
+	// 			if BadorGood(result4) {
+	// 				// fmt.Println("외격통과")
+	// 				if BadorGood(result2) {
+	// 					fmt.Print("[", a, b, c, "]")
+	// 					// fmt.Println("중격통과")
+	// 				}
+	// 			}
+	// 		}
+	// 	}
+	// }
+
+	// 	(1) 수리격
+	// 성과 이름을 구성하는 글자들의 획수가 길한수인가, 흉한 수인가를 구분하여 길한수로 작명하는 방법입니다.
+	// 각 수가 지닌 기운에 근거하니 참고하시길 바랍니다.
+	// 원격(元 格) : 이름첫자와 둘째자 합 (초년운세) --- 명격,지격등으로도 부름
+	// 형격(亨 格) : 성과 이름 첫자의 합 (청년운세) --- 주격,인격등으로도 부름
+	// 이격(利 格) : 성과 이름 끝자의 합 (중년운세) --- 외격으로도 부름
+	// 정격(貞 格) : 성과 이름첫자, 둘째자 모두의 합 (말년운세) --- 총격으로도 부름
+	func() {
+		if BadorGood(result2) {
+			// fmt.Println("천격통과")
 			if BadorGood(result3) {
-				// fmt.Println("지격통과")
-				if BadorGood(result4) {
-					// fmt.Println("외격통과")
-					if BadorGood(result2) {
-						fmt.Println("[", a, b, c, "]")
+				// fmt.Println("총격통과")
+				if BadorGood(result6) {
+					// fmt.Println("지격통과")
+					if BadorGood(result5) {
+						// fmt.Println("외격통과")
+						fmt.Print("[", a, b, c, "]")
 						// fmt.Println("중격통과")
 					}
 				}
 			}
 		}
-	}
-
+	}()
 }
 
 // 길흉 정리
@@ -59,6 +75,7 @@ func BadorGood(num int) bool {
 	// var numBad = []int{2, 4, 12, 14, 27, 28, 30, 53, 59, 60, 62, 69, 72} // 흉운수
 	// var numHell = []int{9, 10, 19, 20, 22, 26, 34, 36, 40, 42, 43, 44, 46, 50, 54, 56, 64, 66, 70, 74, 78, 80} // 흉흉운수
 	arr = append(numPerfect, numVerygood...)
+	// arr = append(arr, numGood...)
 	// arr = numPerfect
 
 	for _, v := range arr {
@@ -89,6 +106,8 @@ func main() {
 				sum(i, j, k)
 			}
 		}
+
+		fmt.Println()
 	}
 
 }
