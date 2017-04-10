@@ -3,17 +3,17 @@ package main
 import "fmt"
 
 const (
-	StrStroke = 1
-	EndStroke = 40
+	StrStroke = 1  // StrStroke is start stroke
+	EndStroke = 25 // EndStroke is lastest stroke
 )
 
 // 3개의 각각의 합을 구하기
 func sum(a, b, c int) {
 	// arr := []int{}
-	// result1 := a + 1     // 천격
-	result2 := a + b // 인격, 형격
-	result3 := b + c // 지격, 원격
-	// result4 := c + 1     // 외격
+	result1 := a + 1     // 천격
+	result2 := a + b     // 인격, 형격
+	result3 := b + c     // 지격, 원격
+	result4 := c + 1     // 외격
 	result5 := a + b + c // 총격, 정격
 	result6 := a + c     // 이격
 
@@ -21,63 +21,56 @@ func sum(a, b, c int) {
 		result5 = result5 - 80
 	}
 
-	// if BadorGood(result1) {
-	// 	// fmt.Println("천격통과")
-	// 	if BadorGood(result5) {
-	// 		// fmt.Println("총격통과")
-	// 		if BadorGood(result3) {
-	// 			// fmt.Println("지격통과")
-	// 			if BadorGood(result4) {
-	// 				// fmt.Println("외격통과")
-	// 				if BadorGood(result2) {
-	// 					fmt.Print("[", a, b, c, "]")
-	// 					// fmt.Println("중격통과")
-	// 				}
-	// 			}
-	// 		}
-	// 	}
-	// }
-
-	// 	(1) 수리격
-	// 성과 이름을 구성하는 글자들의 획수가 길한수인가, 흉한 수인가를 구분하여 길한수로 작명하는 방법입니다.
-	// 각 수가 지닌 기운에 근거하니 참고하시길 바랍니다.
-	// 원격(元 格) : 이름첫자와 둘째자 합 (초년운세) --- 명격,지격등으로도 부름
-	// 형격(亨 格) : 성과 이름 첫자의 합 (청년운세) --- 주격,인격등으로도 부름
-	// 이격(利 格) : 성과 이름 끝자의 합 (중년운세) --- 외격으로도 부름
-	// 정격(貞 格) : 성과 이름첫자, 둘째자 모두의 합 (말년운세) --- 총격으로도 부름
 	func() {
-		if BadorGood(result2) {
-			// fmt.Println("천격통과")
-			if BadorGood(result3) {
-				// fmt.Println("총격통과")
-				if BadorGood(result6) {
-					// fmt.Println("지격통과")
-					if BadorGood(result5) {
-						// fmt.Println("외격통과")
-						fmt.Print("[", a, b, c, "]")
-						// fmt.Println("중격통과")
+		_ = result6 // nothing
+		if GoodOrNot(result1) {
+			if GoodOrNot(result5) {
+				if GoodOrNot(result3) {
+					if GoodOrNot(result4) {
+						if GoodOrNot(result2) {
+							fmt.Print("[", a, b, c, "]")
+						}
 					}
 				}
 			}
 		}
 	}()
+
+	// 	(1) 수리격
+	// 성과 이름을 구성하는 글자들의 획수가 길한수인가, 흉한 수인가를 구분하여 길한수로 작명하는 방법입니다.
+	// 각 수가 지닌 기운에 근거하니 참고하시길 바랍니다.
+	// 원격(元格) : 이름첫자와 둘째자 합 (초년운세) --- 명격,지격등으로도 부름
+	// 형격(亨格) : 성과 이름 첫자의 합 (청년운세) --- 주격,인격등으로도 부름
+	// 이격(利格) : 성과 이름 끝자의 합 (중년운세) --- 외격으로도 부름
+	// 정격(貞格) : 성과 이름첫자, 둘째자 모두의 합 (말년운세) --- 총격으로도 부름
+	// func() {
+	// 	if GoodOrNot(result2) {
+	// 		if GoodOrNot(result3) {
+	// 			if GoodOrNot(result6) {
+	// 				if GoodOrNot(result5) {
+	// 					fmt.Print("[", a, b, c, "]")
+	// 				}
+	// 			}
+	// 		}
+	// 	}
+	// }()
 }
 
-// 길흉 정리
-func BadorGood(num int) bool {
-	//http://www.finename.co.kr/gnu/bbs/board.php?bo_table=m21&wr_id=28 자료를 통해서 정리
-
+//  GoodOrNot is check good number or bad number
+func GoodOrNot(num int) bool {
+	//  http://www.finename.co.kr/gnu/bbs/board.php?bo_table=m21&wr_id=28 자료를 통해서 정리
 	var ok bool = false
 	var arr = []int{}
-	var numPerfect = []int{13, 16, 21, 23, 31, 41}                      // 최상운수
-	var numVerygood = []int{1, 3, 5, 6, 11, 15, 18, 24, 32, 35, 37, 39} // 상운수
-	// var numGood = []int{7, 8, 17, 25, 29, 33, 38, 45, 47, 48, 52, 57, 58, 61, 63, 65, 67, 68, 71, 73, 75, 77, 81} // 양운수
+	var numPerfect = []int{13, 16, 21, 23, 31, 32, 33, 41}          // 최상운수
+	var numVerygood = []int{1, 3, 5, 6, 11, 15, 18, 24, 35, 37, 39} // 상운수
+	// var numGood = []int{7, 8, 17, 25, 29, 38, 45, 47, 48, 52, 57, 58, 61, 63, 65, 67, 68, 71, 73, 75, 77, 81} // 양운수
 	// var numBad = []int{2, 4, 12, 14, 27, 28, 30, 53, 59, 60, 62, 69, 72} // 흉운수
 	// var numHell = []int{9, 10, 19, 20, 22, 26, 34, 36, 40, 42, 43, 44, 46, 50, 54, 56, 64, 66, 70, 74, 78, 80} // 흉흉운수
 	arr = append(numPerfect, numVerygood...)
 	// arr = append(arr, numGood...)
 	// arr = numPerfect
 
+	// compare number which good or not
 	for _, v := range arr {
 		if num == v {
 			ok = true
@@ -86,7 +79,7 @@ func BadorGood(num int) bool {
 	return ok
 }
 
-// 입력받아서 체크하기
+// InputNum is via Scanner input
 func InputNum() {
 	var n1, n2, n3 int
 	fmt.Print("Enter number:")
