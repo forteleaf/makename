@@ -13,16 +13,13 @@ func sum(a, b, c int) {
 	result1 := a + 1     // 천격
 	result2 := a + b     // 인격, 형격
 	result3 := b + c     // 지격, 원격
-	result4 := c + 1     // 외격
+	result4 := 1 + c     // 외격, 이격
 	result5 := a + b + c // 총격, 정격
-	result6 := a + c     // 이격
-
-	if result5 > 81 {
+	if result5 >= 81 {
 		result5 = result5 - 80
 	}
-
+	// fmt.Println("천격", result1, "인격", result2, "지격", result3, "외격", result4, "총격", result5, "")
 	func() {
-		_ = result6 // nothing
 		if GoodOrNot(result1) {
 			if GoodOrNot(result5) {
 				if GoodOrNot(result3) {
@@ -36,17 +33,17 @@ func sum(a, b, c int) {
 		}
 	}()
 
-	// 	(1) 수리격
+	// 	(1) 수리격 (수리오행)
 	// 성과 이름을 구성하는 글자들의 획수가 길한수인가, 흉한 수인가를 구분하여 길한수로 작명하는 방법입니다.
 	// 각 수가 지닌 기운에 근거하니 참고하시길 바랍니다.
 	// 원격(元格) : 이름첫자와 둘째자 합 (초년운세) --- 명격,지격등으로도 부름
 	// 형격(亨格) : 성과 이름 첫자의 합 (청년운세) --- 주격,인격등으로도 부름
 	// 이격(利格) : 성과 이름 끝자의 합 (중년운세) --- 외격으로도 부름
 	// 정격(貞格) : 성과 이름첫자, 둘째자 모두의 합 (말년운세) --- 총격으로도 부름
-	// func() {
+	// func() { // 수리오행
 	// 	if GoodOrNot(result2) {
 	// 		if GoodOrNot(result3) {
-	// 			if GoodOrNot(result6) {
+	// 			if GoodOrNot(result5) {
 	// 				if GoodOrNot(result5) {
 	// 					fmt.Print("[", a, b, c, "]")
 	// 				}
@@ -93,12 +90,12 @@ func InputNum() {
 func main() {
 	// var wordA = 12 // 황
 	// reader := bufio.NewReader(os.Stdin)
-	for i := StrStroke; i <= EndStroke; i++ {
-		for j := StrStroke; j <= EndStroke; j++ {
-			for k := StrStroke; k <= EndStroke; k++ {
-				sum(i, j, k)
-			}
+	// for i := StrStroke; i <= EndStroke; i++ {
+	for j := StrStroke; j <= EndStroke; j++ {
+		for k := StrStroke; k <= EndStroke; k++ {
+			sum(12, j, k)
 		}
+		// }
 
 		fmt.Println()
 	}
