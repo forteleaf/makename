@@ -1,9 +1,10 @@
 package main
 
 import "fmt"
+import "time"
 
 const (
-	StrStroke = 1  // StrStroke is start stroke
+	StrStroke = 2  // StrStroke is start stroke
 	EndStroke = 25 // EndStroke is lastest stroke
 )
 
@@ -58,13 +59,13 @@ func GoodOrNot(num int) bool {
 	//  http://www.finename.co.kr/gnu/bbs/board.php?bo_table=m21&wr_id=28 자료를 통해서 정리
 	var ok bool = false
 	var arr = []int{}
-	var numPerfect = []int{13, 16, 21, 23, 31, 32, 33, 41}          // 최상운수
-	var numVerygood = []int{1, 3, 5, 6, 11, 15, 18, 24, 35, 37, 39} // 상운수
-	// var numGood = []int{7, 8, 17, 25, 29, 38, 45, 47, 48, 52, 57, 58, 61, 63, 65, 67, 68, 71, 73, 75, 77, 81} // 양운수
+	var numPerfect = []int{13, 16, 21, 23, 31, 32, 33, 41}                                                    // 최상운수
+	var numVerygood = []int{1, 3, 5, 6, 11, 15, 18, 24, 35, 37, 39}                                           // 상운수
+	var numGood = []int{7, 8, 17, 25, 29, 38, 45, 47, 48, 52, 57, 58, 61, 63, 65, 67, 68, 71, 73, 75, 77, 81} // 양운수
 	// var numBad = []int{2, 4, 12, 14, 27, 28, 30, 53, 59, 60, 62, 69, 72} // 흉운수
 	// var numHell = []int{9, 10, 19, 20, 22, 26, 34, 36, 40, 42, 43, 44, 46, 50, 54, 56, 64, 66, 70, 74, 78, 80} // 흉흉운수
 	arr = append(numPerfect, numVerygood...)
-	// arr = append(arr, numGood...)
+	arr = append(arr, numGood...)
 	// arr = numPerfect
 
 	// compare number which good or not
@@ -88,6 +89,7 @@ func InputNum() {
 
 // 첫획을 넣으면 나머지 좋은 획수 구하기
 func main() {
+	t0 := time.Now()
 	// var wordA = 12 // 황
 	// reader := bufio.NewReader(os.Stdin)
 	// for i := StrStroke; i <= EndStroke; i++ {
@@ -99,5 +101,5 @@ func main() {
 
 		fmt.Println()
 	}
-
+	fmt.Println("duration", t0.Sub(time.Now()))
 }
