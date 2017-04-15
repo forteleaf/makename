@@ -58,10 +58,9 @@ func sum(a, b, c int) {
 	// }()
 }
 
-//  GoodOrNot is check good number or bad number
+// GoodOrNot check waht insert number
 func GoodOrNot(num int) bool {
-	//  http://www.finename.co.kr/gnu/bbs/board.php?bo_table=m21&wr_id=28 자료를 통해서 정리
-	var ok bool = false
+	ok := false
 	var arr = []int{}
 	var numPerfect = []int{13, 16, 21, 23, 31, 32, 33, 41}                                                    // 최상운수
 	var numVerygood = []int{1, 3, 5, 6, 11, 15, 18, 24, 35, 37, 39}                                           // 상운수
@@ -106,6 +105,9 @@ func main() {
 		fmt.Println()
 	}
 
+	fmt.Println("duration", time.Now().Sub(t0))
+}
+func johabname() {
 	names := []string{}
 	var tmp string
 	// ㅅㅈㅊ , ㅁㅂㅍ
@@ -130,5 +132,5 @@ func main() {
 		}
 	}
 	fmt.Println(names)
-	fmt.Println("duration", time.Now().Sub(t0))
+
 }
