@@ -1,7 +1,11 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
+	"io/ioutil"
+	"log"
+	"os"
 	"time"
 )
 
@@ -11,6 +15,19 @@ const (
 	// EndStroke is lastest stroke
 	EndStroke = 25
 )
+
+// HanjaDataType is 성명한자에 사용되는 것들
+type HanjaDataType struct {
+	//  "한자","획오행","자원오행","획수","뜻","부수","발음"
+	// ["加","土","水",5,"더할,있을","力","가"]
+	Hanja         string
+	WuxingStroke  string
+	WuxingMean    string
+	StrokeCount   string
+	Mean          string
+	Radical       string
+	Pronunciation string
+}
 
 // 3개의 각각의 합을 구하기
 func sum(a, b, c int) {
@@ -65,8 +82,12 @@ func GoodOrNot(num int) bool {
 	var numPerfect = []int{13, 16, 21, 23, 31, 32, 33, 41}                                                    // 최상운수
 	var numVerygood = []int{1, 3, 5, 6, 11, 15, 18, 24, 35, 37, 39}                                           // 상운수
 	var numGood = []int{7, 8, 17, 25, 29, 38, 45, 47, 48, 52, 57, 58, 61, 63, 65, 67, 68, 71, 73, 75, 77, 81} // 양운수
+	// jonghabGood := []int{1, 3, 5, 6, 7, 8, 11, 13, 15, 16, 17, 18, 21, 23, 24, 25, 29, 31, 32, 33, 35, 37, 38, 39, 41, 45, 47, 48, 52, 57, 58, 61, 63, 65, 67, 68, 71, 73, 75, 77, 81}
+	// jonghabBad := []int{2, 4, 9, 10, 12, 14, 19, 22, 26, 27, 28, 30, 34, 36, 40, 42, 43, 44, 46, 49, 50, 51, 53, 54, 55, 56, 59, 60, 62, 64, 66, 69, 70, 72, 74, 76, 78, 79, 80}
 	// var numBad = []int{2, 4, 12, 14, 27, 28, 30, 53, 59, 60, 62, 69, 72} // 흉운수
 	// var numHell = []int{9, 10, 19, 20, 22, 26, 34, 36, 40, 42, 43, 44, 46, 50, 54, 56, 64, 66, 70, 74, 78, 80} // 흉흉운수
+	///////---------------------------////////
+
 	arr = append(numPerfect, numVerygood...)
 	arr = append(arr, numGood...)
 	// arr = numPerfect
@@ -91,22 +112,7 @@ func InputNum() {
 }
 
 // 첫획을 넣으면 나머지 좋은 획수 구하기
-func main() {
-	t0 := time.Now()
-	// var wordA = 12 // 황
-	// reader := bufio.NewReader(os.Stdin)
-	// for i := StrStroke; i <= EndStroke; i++ {
-	for j := StrStroke; j <= EndStroke; j++ {
-		for k := StrStroke; k <= EndStroke; k++ {
-			sum(12, j, k)
-		}
-		// }
 
-		fmt.Println()
-	}
-
-	fmt.Println("duration", time.Now().Sub(t0))
-}
 func johabname() {
 	names := []string{}
 	var tmp string
@@ -133,4 +139,33 @@ func johabname() {
 	}
 	fmt.Println(names)
 
+}
+
+func testMarshall() {
+	file, err := ioutil.ReadFile("./data/peoplehanja.json")
+	if err != nil {
+		log.Fatal(err)
+		os.Exit(1)
+	}
+	var hanjaData HanjaDataType
+	err = json.Unmarshal(file, &hanjaData)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("%s", hanjaData)
+}
+func main() {
+	t0 := time.Now()
+	testMarshall()
+	// reader := bufio.NewReader(os.Stdin)
+	// for i := StrStroke; i <= EndStroke; i++ {
+	// for j := StrStroke; j <= EndStroke; j++ {
+	// 	for k := StrStroke; k <= EndStroke; k++ {
+	// 		sum(12, j, k)
+	// 	}
+	// 	fmt.Println()
+	// 	// }
+	// }
+
+	fmt.Println("duration", time.Now().Sub(t0))
 }
