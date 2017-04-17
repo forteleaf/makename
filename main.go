@@ -16,6 +16,11 @@ const (
 	EndStroke = 25
 )
 
+// StrokeName is name
+type StrokeName struct {
+	a, b, c int
+}
+
 // HanjaDataType is 성명한자에 사용되는 것들
 type HanjaDataType struct {
 	//  "한자","획오행","자원오행","획수","뜻","부수","발음"
@@ -75,6 +80,28 @@ func sum(a, b, c int) {
 	// }()
 }
 
+// ShowKe print 천격 인격, 지격 외격, 총격
+func (stroke *StrokeName) ShowKe() {
+	result1 := stroke.a + 1                   // 천격
+	result2 := stroke.a + stroke.b            // 인격, 형격
+	result3 := stroke.b + stroke.c            // 지격, 원격
+	result4 := 1 + stroke.c                   // 외격, 이격
+	result5 := stroke.a + stroke.b + stroke.c // 총격, 정격
+	if result5 >= 81 {
+		result5 = result5 - 80
+	}
+	fmt.Println(
+		"천격", result1, GoodOrNot(result1),
+		"\n인격", result2, GoodOrNot(result2),
+		"\n지격", result3, GoodOrNot(result3),
+		"\n외격", result4, GoodOrNot(result4),
+		"\n총격", result5, GoodOrNot(result5),
+	)
+}
+func (stroke *StrokeName) CheckKe() {
+
+}
+
 // GoodOrNot check waht insert number
 func GoodOrNot(num int) bool {
 	ok := false
@@ -82,10 +109,10 @@ func GoodOrNot(num int) bool {
 	var numPerfect = []int{13, 16, 21, 23, 31, 32, 33, 41}                                                    // 최상운수
 	var numVerygood = []int{1, 3, 5, 6, 11, 15, 18, 24, 35, 37, 39}                                           // 상운수
 	var numGood = []int{7, 8, 17, 25, 29, 38, 45, 47, 48, 52, 57, 58, 61, 63, 65, 67, 68, 71, 73, 75, 77, 81} // 양운수
-	// jonghabGood := []int{1, 3, 5, 6, 7, 8, 11, 13, 15, 16, 17, 18, 21, 23, 24, 25, 29, 31, 32, 33, 35, 37, 38, 39, 41, 45, 47, 48, 52, 57, 58, 61, 63, 65, 67, 68, 71, 73, 75, 77, 81}
-	// jonghabBad := []int{2, 4, 9, 10, 12, 14, 19, 22, 26, 27, 28, 30, 34, 36, 40, 42, 43, 44, 46, 49, 50, 51, 53, 54, 55, 56, 59, 60, 62, 64, 66, 69, 70, 72, 74, 76, 78, 79, 80}
 	// var numBad = []int{2, 4, 12, 14, 27, 28, 30, 53, 59, 60, 62, 69, 72} // 흉운수
 	// var numHell = []int{9, 10, 19, 20, 22, 26, 34, 36, 40, 42, 43, 44, 46, 50, 54, 56, 64, 66, 70, 74, 78, 80} // 흉흉운수
+	// jonghabGood := []int{1, 3, 5, 6, 7, 8, 11, 13, 15, 16, 17, 18, 21, 23, 24, 25, 29, 31, 32, 33, 35, 37, 38, 39, 41, 45, 47, 48, 52, 57, 58, 61, 63, 65, 67, 68, 71, 73, 75, 77, 81}
+	// jonghabBad := []int{2, 4, 9, 10, 12, 14, 19, 22, 26, 27, 28, 30, 34, 36, 40, 42, 43, 44, 46, 49, 50, 51, 53, 54, 55, 56, 59, 60, 62, 64, 66, 69, 70, 72, 74, 76, 78, 79, 80}
 	///////---------------------------////////
 
 	arr = append(numPerfect, numVerygood...)
@@ -156,16 +183,21 @@ func testMarshall() {
 }
 func main() {
 	t0 := time.Now()
-	testMarshall()
+	// testMarshall()
 	// reader := bufio.NewReader(os.Stdin)
 	// for i := StrStroke; i <= EndStroke; i++ {
-	// for j := StrStroke; j <= EndStroke; j++ {
-	// 	for k := StrStroke; k <= EndStroke; k++ {
-	// 		sum(12, j, k)
-	// 	}
-	// 	fmt.Println()
-	// 	// }
-	// }
+	for j := StrStroke; j <= EndStroke; j++ {
+		for k := StrStroke; k <= EndStroke; k++ {
+			sum(12, j, k)
+		}
+		fmt.Println()
+		// }
+	}
+	var sample1 StrokeName
+	sample1.a = 12
+	sample1.b = 13
+	sample1.c = 10
 
+	sample1.ShowKe()
 	fmt.Println("duration", time.Now().Sub(t0))
 }
