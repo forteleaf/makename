@@ -187,17 +187,25 @@ func main() {
 	// reader := bufio.NewReader(os.Stdin)
 	// for i := StrStroke; i <= EndStroke; i++ {
 	for j := StrStroke; j <= EndStroke; j++ {
+		// fmt.Printf("\n %d획 -----------------------------\n", j)
 		for k := StrStroke; k <= EndStroke; k++ {
 			sum(12, j, k)
 		}
-		fmt.Println()
+		fmt.Printf("\n")
 		// }
 	}
 	var sample1 StrokeName
 	sample1.a = 12
-	sample1.b = 13
-	sample1.c = 10
+	sample1.b = 21
+	sample1.c = 14
 
+	// 황수민綏
+	// 綏 13
+	// 敏 11
+
+	// 황은호
+	// 誾 15
+	// 顥 21
 	sample1.ShowKe()
 	fmt.Println("duration", time.Now().Sub(t0))
 }
